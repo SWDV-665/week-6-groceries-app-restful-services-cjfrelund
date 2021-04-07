@@ -1,12 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Provisions
+      {{pageTitle}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  
   <!--
   <ion-header collapse="condense">
     <ion-toolbar>
@@ -17,493 +18,22 @@
   <ion-list>
   
     <!-- Sliding item with expandable options on both sides -->
-    <ion-item-sliding>
+    <ion-item-sliding *ngFor="let provision of loadProvisions(); let i = index">
       <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
+        <ion-item-option (click)="removeItem(provision, i)" color="danger" expandable>
           Remove
         </ion-item-option>
       </ion-item-options>
   
       <ion-item>
-        <ion-label>Pepsi</ion-label>
-        <ion-note slot="end">qty. 1</ion-note>
+        <ion-label>{{provision.name}}</ion-label>
+        <ion-note slot="end">qty. {{provision.quantity}}</ion-note>
       </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
-          Place In Basket
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
 
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
-          Remove
-        </ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Beans</ion-label>
-        <ion-note slot="end">qty. 1</ion-note>
-      </ion-item>
-  
       <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
-          Place In Basket
+        <ion-item-option (click)="editItem(provision, i)" color="secondary">
+          Edit
         </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
-          Remove
-        </ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Canned Tuna</ion-label>
-        <ion-note slot="end">qty. 5</ion-note>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
-          Place In Basket
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
-          Remove
-        </ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Canned Stew</ion-label>
-        <ion-note slot="end">qty. 2</ion-note>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
-          Place In Basket
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
-          Remove
-        </ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Spam</ion-label>
-        <ion-note slot="end">qty. 2</ion-note>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
-          Place In Basket
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
-          Remove
-        </ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Ginger</ion-label>
-        <ion-note slot="end">qty. 1</ion-note>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
-          Place In Basket
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
-          Remove
-        </ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Kerala Pickle</ion-label>
-        <ion-note slot="end">qty. 1</ion-note>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
-          Place In Basket
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
-          Remove
-        </ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Thumbs Up</ion-label>
-        <ion-note slot="end">qty. 12</ion-note>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
-          Place In Basket
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
-          Remove
-        </ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Curry Leaves</ion-label>
-        <ion-note slot="end">qty. 2</ion-note>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
-          Place In Basket
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
-          Remove
-        </ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Mango</ion-label>
-        <ion-note slot="end">qty. 3</ion-note>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
-          Place In Basket
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
-          Remove
-        </ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Canned Salmon</ion-label>
-        <ion-note slot="end">qty. 2</ion-note>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
-          Place In Basket
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
-          Remove
-        </ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Olive Oil</ion-label>
-        <ion-note slot="end">qty. 1</ion-note>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
-          Place In Basket
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
-          Remove
-        </ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Hawaian Bread</ion-label>
-        <ion-note slot="end">qty. 1</ion-note>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
-          Place In Basket
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
-          Remove
-        </ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Oranges</ion-label>
-        <ion-note slot="end">qty. 12</ion-note>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
-          Place In Basket
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
-          Remove
-        </ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Hash</ion-label>
-        <ion-note slot="end">qty. 1</ion-note>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
-          Place In Basket
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
-          Remove
-        </ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Bread</ion-label>
-        <ion-note slot="end">qty. 1</ion-note>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
-          Place In Basket
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
-          Remove
-        </ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Canned Soups</ion-label>
-        <ion-note slot="end">qty. 4</ion-note>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
-          Place In Basket
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
-          Remove
-        </ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Baked Beans</ion-label>
-        <ion-note slot="end">qty. 1</ion-note>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
-          Place In Basket
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
-          Remove
-        </ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Sugar</ion-label>
-        <ion-note slot="end">qty. 1</ion-note>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
-          Place In Basket
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
-          Remove
-        </ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Pepper</ion-label>
-        <ion-note slot="end">qty. 1</ion-note>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
-          Place In Basket
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
-          Remove
-        </ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Salt</ion-label>
-        <ion-note slot="end">qty. 1</ion-note>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
-          Place In Basket
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
-          Remove
-        </ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Dish Soap</ion-label>
-        <ion-note slot="end">qty. 1</ion-note>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
-          Place In Basket
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
-          Remove
-        </ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Sponges</ion-label>
-        <ion-note slot="end">qty. 1</ion-note>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
-          Place In Basket
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
-          Remove
-        </ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Ziploc Bags</ion-label>
-        <ion-note slot="end">qty. 1</ion-note>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
-          Place In Basket
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
-          Remove
-        </ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Coffee Filters</ion-label>
-        <ion-note slot="end">qty. 1</ion-note>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="tertiary" expandable>
-          Place In Basket
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-
-        <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="danger" expandable>
-          Remove
-        </ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>Paper Plates</ion-label>
-        <ion-note slot="end">qty. 1</ion-note>
-      </ion-item>
-  
-      <ion-item-options side="end">
         <ion-item-option color="tertiary" expandable>
           Place In Basket
         </ion-item-option>
@@ -511,4 +41,16 @@
     </ion-item-sliding>
 
   </ion-list>
+
+  <!--Button to add item to list.-->
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="addItem()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <h3 id="noContent" *ngIf="loadProvisions().length === 0">
+    Please add provisions.
+  </h3>
+
 </ion-content>

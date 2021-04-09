@@ -3,6 +3,7 @@ import { IonItemSliding, ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { ProvisionsServiceService } from '../provisions-service.service';
 import { InputDialogService } from '../input-dialog.service';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 
 
@@ -17,7 +18,7 @@ export class Tab1Page {
 
 
 
-  constructor(public toastController: ToastController, public alertController: AlertController, public dataService: ProvisionsServiceService, public inputService: InputDialogService) { }
+  constructor(public toastController: ToastController, public alertController: AlertController, public dataService: ProvisionsServiceService, public inputService: InputDialogService, private socialSharing: SocialSharing) { }
 
 
   loadProvisions() {
@@ -52,6 +53,27 @@ export class Tab1Page {
   addItem() {
     console.log("Adding item.");
     this.inputService.showPrompt();
+  }
+
+  async shareItem(provision, index) {
+    console.log("Share Item - ", provision, index);
+
+    const toast = await this.toastController.create({
+      position: "top",
+      message: 'Sharing item ' + provision.name + '.',
+      duration: 2000
+    });
+
+    let message = "Hey, can you pick this provision up for me while you are out and about.\n\nProvision:" + provision.name + "\nQuantity: " + provision.quantity + "\nShared via BumbleBoat | 2B Provisions App";
+    let subject = "\n\nShared via BumbleBoat | 2B Provisions App";
+    // Check if sharing via email is supported
+    this.socialSharing.share(message, subject).then(() => {
+      // Sharing via email is possible
+      console.log("Shared successfully!");
+    }).catch((error) => {
+      // Sharing via email is not possible
+      console.error("Error trying to share ", error);
+    });
   }
 
 
